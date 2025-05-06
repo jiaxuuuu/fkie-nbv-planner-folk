@@ -18,10 +18,11 @@ public:
 
   // Group General
   int planner_boundary_id = 0;
-  double arm_height_min = 0.8;
-  double arm_height_max = 1.0;
-  double self_collision_height = 0.8;
-  double arm_goal_range = 1.1;
+  double arm_height_min = 0.3;
+  double arm_height_max = 0.5;
+  double self_collision_height = 0.2;
+  double arm_goal_range = 0.1;
+  // Following three is for information gain calculation
   double raycast_dr = 0.01; // this should be the same as the resolution of the octomap
   double raycast_dphi = 10;
   double raycast_dtheta = 10;
@@ -29,10 +30,11 @@ public:
   double gain_r_max = 1.5; // this should be same as the max range of the octomap
   double camera_hfov = 86.0;
   double camera_vfov = 57.0;
+
   double visited_cells_grid_size = 0.5;
   double min_distance_to_obstacle = 0.3; // Min z of camera, or min distance the camera has to maintain from the obstacle
-  bool compute_yaw_from_free_space = false;
-  bool compute_yaw_from_measurement = true;
+  bool compute_yaw_from_free_space = true;
+  bool compute_yaw_from_measurement = false;
 
   // Group pathOptimizer
   int path_optimizer_sampling_target_count = 1;
@@ -70,7 +72,7 @@ public:
   std::vector<double> planner_boundary_x;
   std::vector<double> planner_boundary_y;
   std::string world_frame = "world";
-  std::string robot_sampling_frame = "turret_link";
+  std::string robot_sampling_frame = "base_link";
 
   NBVParameters()
   {

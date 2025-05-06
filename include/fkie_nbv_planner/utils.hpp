@@ -5,7 +5,7 @@
 #include <Eigen/Dense>
 #include <ros/ros.h>
 #include <octomap/octomap.h>
-
+#include "fkie_nbv_planner/NBVParameters.hpp"
 #include <geometry_msgs/Polygon.h>
 #include <geometry_msgs/PoseStamped.h>
 

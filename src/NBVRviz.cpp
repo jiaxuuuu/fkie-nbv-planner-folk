@@ -773,4 +773,5 @@ namespace fkie_nbv_planner
     m.header.stamp = ros::Time::now();
     pub.publish(ma);
   }
+  
 }

@@ -16,7 +16,7 @@ class OdomTfBroadcraster:
         rospy.Subscriber('odom', nav_msgs.msg.Odometry, self.handle_odom)
         self.pose_pub = rospy.Publisher(
             'pose', geometry_msgs.msg.PoseStamped, queue_size=10)
-        self.world_frame = "world"
+        self.world_frame = "map"
         self._lock = Lock()
 
     def transform_pose(self, input_pose, from_frame, to_frame):
@@ -27,8 +27,8 @@ class OdomTfBroadcraster:
         pose_stamped.header.stamp = rospy.Time.now()
 
         try:
-            output_pose_stamped = self.tf_buffer.transform(
-                pose_stamped, to_frame, rospy.Duration(1))
+            transform = self.tf_buffer.lookup_transform(to_frame, pose_stamped.header.frame_id, rospy.Time(0), rospy.Duration(3))
+            output_pose_stamped = tf2_geometry_msgs.do_transform_pose(pose_stamped, transform)
             return output_pose_stamped.pose
 
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):

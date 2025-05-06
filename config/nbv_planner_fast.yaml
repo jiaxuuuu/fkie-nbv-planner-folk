@@ -8,9 +8,9 @@ free_space_frontier: false
 
 # Group General
 planner_boundary_id: 0
-arm_height_min: 0.4
-arm_height_max: 1.4
-self_collision_height: 2.0
+arm_height_min: 0.2
+arm_height_max: 0.5
+self_collision_height: 0.2
 arm_goal_range: 1.3
 raycast_dr: 0.1 # This should be the same as the resolution of the octomap
 raycast_dphi: 10
@@ -36,7 +36,7 @@ optimize_path_shift_points_towards_obstacles: false
 # Group RRT
 rrt_tree_length: 600 # Number of nodes in the tree
 rrt_N_max_tries: 50 # Maximum number of tries allowed for a q_new (child)
-rrt_sampling_radius: 30.0 
+rrt_sampling_radius: 5.0 
 rrt_collision_cyl_radius: 0.3 # size of cylinder from q_near (parent) to q_new (child)
 
 rrt_sample_threshold_distance: 0.4 # Distance between one sample to any one other sample, should ALWAYS be less than rrt_step_size.
@@ -62,7 +62,9 @@ utility_max_value_visited_cell: 1.0 #Do not configure
 
 # No group
 # Boundary: 3m bounding box around the point (-5.3603,-5.6852)
-planner_boundary_x: [-8.3603, -2.3603, -2.3603, -8.3603]
-planner_boundary_y: [-2.6852, -2.6852, -8.6852, -8.6852]
-robot_sampling_frame: turret_link
-world_frame: world
+# planner_boundary_x: [-8.3603, -2.3603, -2.3603, -8.3603]
+# planner_boundary_y: [-2.6852, -2.6852, -8.6852, -8.6852]
+planner_boundary_x: [-5, -5, 5, 5]
+planner_boundary_y: [-5, 5, 5, -5]
+robot_sampling_frame: base_link
+world_frame: map
